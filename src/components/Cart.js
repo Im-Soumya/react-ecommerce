@@ -1,76 +1,47 @@
 import React from "react";
 import CartItem from "./CartItem";
+import Subtotal from "./Subtotal";
+import { Link } from "react-router-dom";
 
-export default function Cart() {
-  const products = [
-    {
-      id: 1,
-      name: "Adidas Men's Elate M Running Shoe",
-      price: " 2,499.00",
-      rating: 4,
-      image: "https://m.media-amazon.com/images/I/81CeFvY0M6L._UL1500_.jpg",
-    },
-    {
-      id: 2,
-      name: "Apple Macbook Pro",
-      price: "84,990.00",
-      rating: 5,
-      image: "https://m.media-amazon.com/images/I/71jG+e7roXL._SL1500_.jpg",
-    },
-    {
-      id: 3,
-      name: `Samsung LC34J791WTWXXL 34" Wide 3 Curved Monitor 3440 x 1440`,
-      price: "84,590.00",
-      rating: 4,
-      image: "https://m.media-amazon.com/images/I/91-hWcNu2yL._SL1500_.jpg",
-    },
-    {
-      id: 4,
-      name: "Apple iPhone 13 (128GB) - Midnight",
-      price: "74900",
-      rating: 5,
-      image: "https://m.media-amazon.com/images/I/61VuVU94RnL._SL1500_.jpg"
-    },
-    {
-      id: 4,
-      name: "Apple iPhone 13 (128GB) - Midnight",
-      price: "74900",
-      rating: 5,
-      image: "https://m.media-amazon.com/images/I/61VuVU94RnL._SL1500_.jpg"
-    },
-    {
-      id: 4,
-      name: "Apple iPhone 13 (128GB) - Midnight",
-      price: "74900",
-      rating: 5,
-      image: "https://m.media-amazon.com/images/I/61VuVU94RnL._SL1500_.jpg"
-    },
-    {
-      id: 4,
-      name: "Apple iPhone 13 (128GB) - Midnight",
-      price: "74900",
-      rating: 5,
-      image: "https://m.media-amazon.com/images/I/61VuVU94RnL._SL1500_.jpg"
-    },
-  ]
-
-  const renderEmptyCart = () => (
-    <>
-      <h3>Your cart is empty, shop something!</h3>
-    </>
-  )
-
-  const renderCart = () => (
-    <>
-      {products.map((product, index) => (
-        <CartItem key={index} product={product} />
-      ))}
-    </>
-  )
-
+export default function Cart({ cart, removeItem }) {
   return (
-    <div className="px-5 my-5">
-      {products.length ? (renderCart()) : (renderEmptyCart())}
-    </div>
+    <>
+      {
+        cart ? (
+          <div>
+            {
+              cart.total_items === 0 ? (
+                <div className="text-3xl text-center mt-10">
+                  <h2>Your shopping cart looks empty, </h2>
+                  <Link to="/">
+                    <span className="text-blue-700 hover:border-b-2 border-blue-700">start adding some!</span>
+                  </Link>
+                </div>
+              ) : (
+                <>
+                  <div className="flex p-5 bg-gray-200 w-full h-max">
+                    <div className="w-full">
+                      {/* <img 
+                      className="w-full mb-3"
+                      src="" alt=""
+                    /> */}
+                      <h3 className="text-lg font-semibold">Hello user!</h3>
+                      <h2 className="mr-3 pb-3 font-semibold text-2xl border-b-2 border-gray-900">Your shopping cart...</h2>
+                      {cart.line_items?.map((item, index) => (
+                        <CartItem key={index} item={item} removeItem={removeItem} />
+                      ))}
+                    </div>
+
+                    <div>
+                      <Subtotal cart={cart} />
+                    </div>
+                  </div>
+                </>
+              )
+            }
+          </div>
+        ) : (<></>)
+      }
+    </>
   )
 }
