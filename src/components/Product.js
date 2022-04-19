@@ -20,7 +20,7 @@ export default function Product({ product, addItem }) {
             <div className="w-full h-full mt-7 flex items-end justify-center">
               <button
                 onClick={() => addItem(product.id, 1)}
-                className="w-full h-10 font-semibold text-md bg-slate-600 rounded-md text-white py-2 px-4 hover:bg-slate-700 transition duration-200"
+                className="w-full h-10 font-semibold text-md shadow-md bg-slate-600 rounded-md text-white py-2 px-4 hover:bg-slate-700 transition duration-200"
               >
                 Add to Cart
               </button>

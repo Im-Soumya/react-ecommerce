@@ -20,7 +20,7 @@ export default function CartItem({ item, removeItem }) {
         <div className="w-full h-full mt-7 flex items-end justify-center">
           <button
             onClick={() => removeItem(item.id)}
-            className=" w-3/5 h-10 bg-slate-600 rounded-md text-white py-2 px-4 hover:bg-slate-700 transition duration-200"
+            className=" w-3/5 h-10 bg-slate-600 rounded-md shadow-md text-white py-2 px-4 hover:bg-slate-700 transition duration-200"
           >
             Remove from Cart
           </button>

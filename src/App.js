@@ -5,11 +5,13 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import Cart from "./components/Cart";
 import Orders from "./components/Orders";
+import Checkout from "./components/Checkout";
 import { commerce } from "./lib/commerce";
 
 function App() {
   const [products, setProducts] = useState([])
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState({})
+  const [order, setOrder] = useState({})
 
   const getProducts = async () => {
     const response = await commerce.products.list()
@@ -19,7 +21,6 @@ function App() {
   const getCart = async () => {
     const response = await commerce.cart.retrieve()
     setCart(response)
-    console.log(response)
   }
 
   const addItem = async (productId, quantity) => {
@@ -32,6 +33,21 @@ function App() {
     setCart(response.cart)
   }
 
+  const refreshCart = async () => {
+    const newCart = await commerce.cart.refresh()
+    setCart(newCart)
+  }
+
+  const onCaptureCheckout = async (checkoutTokenId, order) => {
+    try {
+      const incomingOrder = await commerce.checkout.capture(checkoutTokenId, order)
+      setOrder(incomingOrder)
+      refreshCart()
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   useEffect(() => {
     getProducts()
     getCart()
@@ -41,6 +57,7 @@ function App() {
     <Router>
       <div className="bg-slate-200">
         <Routes>
+          <Route path="/checkout" element={<><Navbar cart={cart} /><Checkout cart={cart} /></>} />
           <Route path="/orders" element={<><Navbar cart={cart} /><Orders /></>} />
           <Route path="/cart" element={<><Navbar cart={cart} /><Cart removeItem={removeItem} cart={cart} /></>} />
           <Route path="/" element={<><Navbar cart={cart} /><Products addItem={addItem} products={products} /></>} />
