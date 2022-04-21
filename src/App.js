@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import Products from "./components/Products/Products";
 import Cart from "./components/Cart/Cart";
-import Orders from "./components/Orders";
 import Checkout from "./components/Checkout/Checkout";
 import { commerce } from "./lib/commerce";
 
@@ -59,7 +58,6 @@ function App() {
       <div className="bg-slate-200">
         <Routes>
           <Route path="/checkout" element={<><Navbar cart={cart} /><Checkout order={order} onCaptureCheckout={handleCaptureCheckout} error={errorMessage} cart={cart} /></>} />
-          <Route path="/orders" element={<><Navbar cart={cart} /><Orders /></>} />
           <Route path="/cart" element={<><Navbar cart={cart} /><Cart removeItem={removeItem} cart={cart} /></>} />
           <Route path="/" element={<><Navbar cart={cart} /><Products addItem={addItem} products={products} /></>} />
         </Routes>

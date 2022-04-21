@@ -8,7 +8,7 @@ export default function Subtotal({ cart }) {
     <div className="flex flex-col justify-evenly mt-20 ml-5 w-96 h-56 p-4 bg-white rounded-lg shadow-xl">
       <p className="ml-3">Subtotal ({cart.total_items} items): {cart.subtotal.formatted_with_symbol}</p>
       <small className="ml-3">
-        <input type="checkbox" />This is a gift
+        <input type="checkbox" />  This is a gift
       </small>
       <button
         onClick={() => navigate("/checkout")}

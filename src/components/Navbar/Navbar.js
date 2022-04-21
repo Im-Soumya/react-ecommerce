@@ -33,12 +33,10 @@ export default function Navbar({ cart }) {
           <span className="text-md font-semibold">Sign out</span>
         </div>
 
-        <Link to="/orders">
-          <div className="flex flex-col mx-3 text-white">
-            <span className="text-xs">Returns</span>
-            <span className="text-md font-semibold">Orders</span>
-          </div>
-        </Link>
+        <div className="flex flex-col mx-3 text-white">
+          <span className="text-xs">Returns</span>
+          <span className="text-md font-semibold">Orders</span>
+        </div>
 
         <Link to="/cart">
           <div>
