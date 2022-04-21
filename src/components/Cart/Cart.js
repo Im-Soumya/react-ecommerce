@@ -4,6 +4,7 @@ import Subtotal from "./Subtotal";
 import { Link } from "react-router-dom";
 
 export default function Cart({ cart, removeItem }) {
+
   return (
     <>
       {
