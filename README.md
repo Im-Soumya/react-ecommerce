@@ -10,4 +10,5 @@ Note: While adding card details please enter CArd number: 4242 4242 4242 4242
 Resources used: 
   * Commerce.js
   * Material UI
+  * Tailwind
   * Stripe
